@@ -23,6 +23,7 @@ tweets = []
 count = 0
 for item in r:
 	jsonItem = json.dumps(item)
+	# Dictionary included to allow us to put each record in bulk write to different shards in the stream.
 	tweets.append({'Data':jsonItem, 'PartitionKey':"filler"})
 	count += 1
 	if count == 100:
